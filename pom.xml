@@ -42,6 +42,7 @@
       <version>1.2.5</version>
       <scope>test</scope>
     </dependency>
+    <!--
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-core_2.10</artifactId>
@@ -77,6 +78,15 @@
       <artifactId>spark-yarn_2.10</artifactId>
       <version>1.6.1</version>
     </dependency>
+    -->
+    <dependency>
+      <groupId>cn.ac.iscas.spark</groupId>
+      <artifactId>tcse-spark</artifactId>
+      <version>1.6.1</version>
+      <scope>system</scope>
+      <systemPath>/Users/xulijie/dev/IdeaProjects/TCSEspark/assembly/target/scala-2.10/spark-assembly-1.6.2-SNAPSHOT-hadoop2.6.4.jar</systemPath>
+    </dependency>
+
   </dependencies>
 
   <build>

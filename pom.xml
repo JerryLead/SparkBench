@@ -42,12 +42,90 @@
       <version>1.2.5</version>
       <scope>test</scope>
     </dependency>
-    <!--
+
+    <dependency>
+      <groupId>org.apache.hbase</groupId>
+      <artifactId>hbase-common</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.hbase</groupId>
+      <artifactId>hbase-client</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.hbase</groupId>
+      <artifactId>hbase-server</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+
+
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-core_2.10</artifactId>
       <version>1.6.1</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-sql_2.10</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-streaming_2.10</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-streaming-flume_2.10</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-streaming-kafka_2.10</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-streaming-twitter_2.10</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.twitter</groupId>
+      <artifactId>algebird-core_2.10</artifactId>
+      <version>0.9.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>18.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.twitter4j</groupId>
+      <artifactId>twitter4j-core</artifactId>
+      <version>4.0.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.twitter4j</groupId>
+      <artifactId>twitter4j-stream</artifactId>
+      <version>4.0.4</version>
+    </dependency>
+
+
+
+
+    <!--
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-sql_2.10</artifactId>
@@ -79,13 +157,15 @@
       <version>1.6.1</version>
     </dependency>
     -->
+    <!--
     <dependency>
       <groupId>cn.ac.iscas.spark</groupId>
       <artifactId>tcse-spark</artifactId>
       <version>1.6.1</version>
       <scope>system</scope>
-      <systemPath>/Users/xulijie/dev/IdeaProjects/TCSEspark/assembly/target/scala-2.10/spark-assembly-1.6.2-SNAPSHOT-hadoop2.6.4.jar</systemPath>
+      <systemPath>/Users/xulijie/dev/IdeaProjects/TCSEspark/assembly/target/scala-2.10/spark-assembly-1.6.2-SNAPSHOT-hadoop2.7.1.jar</systemPath>
     </dependency>
+    -->
 
   </dependencies>
 

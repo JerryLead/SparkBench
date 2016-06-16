@@ -42,13 +42,14 @@ object HdfsWordCount {
     */
 
     StreamingExamples.setStreamingLogLevels()
-    val sparkConf = new SparkConf().setAppName("HdfsWordCount").setMaster("local")
+    val sparkConf = new SparkConf().setAppName("HdfsWordCount").setMaster("local[2]")
     // Create the context
-    val ssc = new StreamingContext(sparkConf, Seconds(1))
+    val ssc = new StreamingContext(sparkConf, Seconds(5))
 
     // Create the FileInputDStream on the directory and use the
     // stream to count words in new files created
-    val filePath = "/Users/xulijie/Documents/data/RandomText/randomText-10MB.txt"
+    val filePath = "src/main/scala/local"
+    // val filePath = "hdfs://master:9000/user/lijie/test/input"
     val lines = ssc.textFileStream(filePath)
     val words = lines.flatMap(_.split(" "))
     val wordCounts = words.map(x => (x, 1)).reduceByKey(_ + _)

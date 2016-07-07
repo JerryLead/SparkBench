@@ -48,7 +48,7 @@ object HdfsWordCount {
 
     // Create the FileInputDStream on the directory and use the
     // stream to count words in new files created
-    val filePath = "src/main/scala/local"
+    val filePath = "/Users/xulijie/Documents/data/Streaming/"
     // val filePath = "hdfs://master:9000/user/lijie/test/input"
     val lines = ssc.textFileStream(filePath)
     val words = lines.flatMap(_.split(" "))

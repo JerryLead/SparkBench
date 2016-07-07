@@ -9,7 +9,11 @@ object LocalWordCount {
   def main(args: Array[String]) {
     val conf = new SparkConf().setAppName("WordCount")
     conf.setMaster("local")
+    conf.set("spark.dynamicAllocation.enabled", "true")
+    conf.set("spark.shuffle.service.enabled", "true")
+
     val sc = new SparkContext(conf)
+
 
     val filePath = "src/main/scala/yarn/cluster/WordCount.scala"
     val textFile = sc.textFile(filePath)

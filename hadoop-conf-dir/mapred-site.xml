@@ -17,11 +17,11 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
-  <property>  
-    <name>mapreduce.framework.name</name>  
-    <value>yarn</value>  
-    <description>Execution framework set to Hadoop YARN.</description>  
-  </property>  
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+    <description>Execution framework set to Hadoop YARN.</description>
+  </property>
   <property>
     <name>mapreduce.jobhistory.address</name>
     <value>master:10020</value>

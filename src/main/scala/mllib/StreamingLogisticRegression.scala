@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package mllib
+package org.apache.spark.examples.mllib
 
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.regression.LabeledPoint

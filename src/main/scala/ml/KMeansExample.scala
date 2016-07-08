@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package ml
+package org.apache.spark.examples.ml
 
 // scalastyle:off println
 
@@ -37,7 +37,7 @@ object KMeansExample {
 
   def main(args: Array[String]): Unit = {
     // Creates a Spark context and a SQL context
-    val conf = new SparkConf().setAppName(s"${this.getClass.getSimpleName}").setMaster("local")
+    val conf = new SparkConf().setAppName(s"${this.getClass.getSimpleName}")
     val sc = new SparkContext(conf)
     val sqlContext = new SQLContext(sc)
 

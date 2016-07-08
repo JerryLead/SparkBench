@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package ml
+package org.apache.spark.examples.ml
 
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.ml.classification.LogisticRegression

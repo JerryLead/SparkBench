@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package mllib
+package org.apache.spark.examples.mllib
 
 import org.apache.log4j.{Level, Logger}
 import scopt.OptionParser
@@ -89,14 +89,14 @@ object LinearRegression {
   }
 
   def run(params: Params) {
-    val conf = new SparkConf().setAppName(s"LinearRegression with $params").setMaster("local[4]")
+    val conf = new SparkConf().setAppName(s"LinearRegression with $params")
     val sc = new SparkContext(conf)
 
     Logger.getRootLogger.setLevel(Level.WARN)
 
     val examples = MLUtils.loadLibSVMFile(sc, params.input).cache()
 
-    val splits = examples.randomSplit(Array(0.8, 0.2), 1234)
+    val splits = examples.randomSplit(Array(0.8, 0.2))
     val training = splits(0).cache()
     val test = splits(1).cache()
 

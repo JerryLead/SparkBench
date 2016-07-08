@@ -9,18 +9,15 @@ object LocalWordCount {
   def main(args: Array[String]) {
     val conf = new SparkConf().setAppName("WordCount")
     conf.setMaster("local")
-    conf.set("spark.dynamicAllocation.enabled", "true")
-    conf.set("spark.shuffle.service.enabled", "true")
 
     val sc = new SparkContext(conf)
 
 
-    val filePath = "src/main/scala/yarn/cluster/WordCount.scala"
+    val filePath = "src/main/scala/local/LocalWordCount.scala"
     val textFile = sc.textFile(filePath)
     val result = textFile.flatMap(_.split("[ |\\.]"))
       .map(word => (word, 1)).reduceByKey(_ + _)
 
     result.collect().foreach(println)
-    sc.stop()
   }
 }

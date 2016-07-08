@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package mllib
+package org.apache.spark.examples.mllib
 
 import org.apache.spark.SparkConf
 import org.apache.spark.mllib.stat.test.{BinarySample, StreamingTest}
@@ -59,12 +59,10 @@ object StreamingTestExample {
 
     val conf = new SparkConf().setMaster("local").setAppName("StreamingTestExample")
     val ssc = new StreamingContext(conf, batchDuration)
-    /*
     ssc.checkpoint({
       val dir = Utils.createTempDir()
       dir.toString
     })
-    */
 
     // $example on$
     val data = ssc.textFileStream(dataDir).map(line => line.split(",") match {

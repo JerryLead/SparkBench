@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package mllib
+package org.apache.spark.examples.mllib
 
 import scala.reflect.runtime.universe._
 

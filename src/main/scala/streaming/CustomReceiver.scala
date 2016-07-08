@@ -18,13 +18,13 @@
 // scalastyle:off println
 package streaming
 
-import java.io.{InputStreamReader, BufferedReader, InputStream}
+import java.io.{BufferedReader, InputStreamReader}
 import java.net.Socket
 
-import org.apache.spark.{SparkConf, Logging}
 import org.apache.spark.storage.StorageLevel
-import org.apache.spark.streaming.{Seconds, StreamingContext}
 import org.apache.spark.streaming.receiver.Receiver
+import org.apache.spark.streaming.{Seconds, StreamingContext}
+import org.apache.spark.{Logging, SparkConf}
 
 /**
  * Custom Receiver that receives data over a socket. Received bytes is interpreted as

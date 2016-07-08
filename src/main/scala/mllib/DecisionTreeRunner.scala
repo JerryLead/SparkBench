@@ -16,9 +16,7 @@
  */
 
 // scalastyle:off println
-package mllib
-
-import java.util.Random
+package org.apache.spark.examples.mllib
 
 import scala.language.reflectiveCalls
 
@@ -259,7 +257,7 @@ object DecisionTreeRunner {
 
   def run(params: Params) {
 
-    val conf = new SparkConf().setAppName(s"DecisionTreeRunner with $params").setMaster("local")
+    val conf = new SparkConf().setAppName(s"DecisionTreeRunner with $params")
     val sc = new SparkContext(conf)
 
     println(s"DecisionTreeRunner with parameters:\n$params")
@@ -313,7 +311,7 @@ object DecisionTreeRunner {
         println(s"Test mean squared error = $testMSE")
       }
     } else {
-      val randomSeed = new Random().nextInt()
+      val randomSeed = Utils.random.nextInt()
       if (params.algo == Classification) {
         val startTime = System.nanoTime()
         val model = RandomForest.trainClassifier(training, strategy, params.numTrees,

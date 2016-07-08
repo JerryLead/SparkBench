@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package ml
+package org.apache.spark.examples.ml
 
 import scala.collection.mutable
 import scala.language.reflectiveCalls
@@ -24,12 +24,12 @@ import scala.language.reflectiveCalls
 import scopt.OptionParser
 
 import org.apache.spark.{SparkConf, SparkContext}
-import mllib.AbstractParams
+import org.apache.spark.examples.mllib.AbstractParams
 import org.apache.spark.ml.{Pipeline, PipelineStage, Transformer}
 import org.apache.spark.ml.classification.{DecisionTreeClassificationModel, DecisionTreeClassifier}
 import org.apache.spark.ml.feature.{VectorIndexer, StringIndexer}
 import org.apache.spark.ml.regression.{DecisionTreeRegressionModel, DecisionTreeRegressor}
-import util.MetadataUtils
+import org.apache.spark.ml.util.MetadataUtils
 import org.apache.spark.mllib.evaluation.{RegressionMetrics, MulticlassMetrics}
 import org.apache.spark.mllib.linalg.Vector
 import org.apache.spark.mllib.util.MLUtils

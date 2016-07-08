@@ -18,9 +18,10 @@
 // scalastyle:off println
 package streaming.clickstream
 
-import java.net.ServerSocket
 import java.io.PrintWriter
-import java.util.Random
+import java.net.ServerSocket
+
+import scala.util.Random
 
 /** Represents a page view on a website with associated dimension data. */
 class PageView(val url : String, val status : Int, val zipCode : Int, val userID : Int)

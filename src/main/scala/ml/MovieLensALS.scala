@@ -16,12 +16,12 @@
  */
 
 // scalastyle:off println
-package ml
+package org.apache.spark.examples.ml
 
 import scopt.OptionParser
 
 import org.apache.spark.{SparkConf, SparkContext}
-import mllib.AbstractParams
+import org.apache.spark.examples.mllib.AbstractParams
 import org.apache.spark.ml.recommendation.ALS
 import org.apache.spark.sql.{Row, SQLContext}
 

@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package ml
+package org.apache.spark.examples.ml
 
 import scala.collection.mutable
 import scala.language.reflectiveCalls
@@ -24,7 +24,7 @@ import scala.language.reflectiveCalls
 import scopt.OptionParser
 
 import org.apache.spark.{SparkConf, SparkContext}
-import mllib.AbstractParams
+import org.apache.spark.examples.mllib.AbstractParams
 import org.apache.spark.ml.{Pipeline, PipelineStage}
 import org.apache.spark.ml.regression.{LinearRegression, LinearRegressionModel}
 import org.apache.spark.sql.DataFrame
@@ -107,9 +107,8 @@ object LinearRegressionExample {
   }
 
   def run(params: Params) {
-    val conf = new SparkConf().setAppName(s"LinearRegressionExample with $params").setMaster("local[2]")
+    val conf = new SparkConf().setAppName(s"LinearRegressionExample with $params")
     val sc = new SparkContext(conf)
-    conf.set("spark.default.parallelism", "4")
 
     println(s"LinearRegressionExample with parameters:\n$params")
 

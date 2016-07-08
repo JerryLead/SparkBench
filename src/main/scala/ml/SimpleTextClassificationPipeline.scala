@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package ml
+package org.apache.spark.examples.ml
 
 import scala.beans.BeanInfo
 

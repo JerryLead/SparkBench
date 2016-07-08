@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package ml
+package org.apache.spark.examples.ml
 
 import scala.collection.mutable
 import scala.language.reflectiveCalls
@@ -24,7 +24,7 @@ import scala.language.reflectiveCalls
 import scopt.OptionParser
 
 import org.apache.spark.{SparkConf, SparkContext}
-import mllib.AbstractParams
+import org.apache.spark.examples.mllib.AbstractParams
 import org.apache.spark.ml.{Pipeline, PipelineStage}
 import org.apache.spark.ml.classification.{RandomForestClassificationModel, RandomForestClassifier}
 import org.apache.spark.ml.feature.{StringIndexer, VectorIndexer}

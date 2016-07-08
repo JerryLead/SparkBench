@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package ml
+package org.apache.spark.examples.ml
 
 import java.util.concurrent.TimeUnit.{NANOSECONDS => NANO}
 
@@ -24,9 +24,9 @@ import scopt.OptionParser
 
 import org.apache.spark.{SparkContext, SparkConf}
 // $example on$
-import mllib.AbstractParams
+import org.apache.spark.examples.mllib.AbstractParams
 import org.apache.spark.ml.classification.{OneVsRest, LogisticRegression}
-import util.MetadataUtils
+import org.apache.spark.ml.util.MetadataUtils
 import org.apache.spark.mllib.evaluation.MulticlassMetrics
 import org.apache.spark.mllib.linalg.Vector
 import org.apache.spark.sql.DataFrame

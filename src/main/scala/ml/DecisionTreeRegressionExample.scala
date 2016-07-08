@@ -16,8 +16,7 @@
  */
 
 // scalastyle:off println
-package ml
-
+package org.apache.spark.examples.ml
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.{SparkContext, SparkConf}
 // $example on$

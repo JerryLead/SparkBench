@@ -1,24 +1,22 @@
-package test
+package dynamic
 
 /**
   * Created by xulijie on 16-6-25.
   */
-object ExecutorTest {
+object MaxExecutorNumCalculator {
 
   var minNumExecutors = 0
   var maxNumExecutors = Integer.MAX_VALUE
 
   def setExecutorNum(numTasks: Int, tasksPerExecutor: Int): Unit = {
-    //if (minNumExecutors == 0 && maxNumExecutors == Integer.MAX_VALUE) {
-      val initialExecutorNum = (numTasks + tasksPerExecutor - 1) / tasksPerExecutor
-      if (numTasks <= 8) {
-        maxNumExecutors = initialExecutorNum * 2
-      } else if (numTasks <= 32) {
-        maxNumExecutors = initialExecutorNum * 2
-      } else {
-        maxNumExecutors = initialExecutorNum * 2
-      }
-    //}
+    val initialExecutorNum = (numTasks + tasksPerExecutor - 1) / tasksPerExecutor
+    if (numTasks <= 8) {
+      maxNumExecutors = initialExecutorNum * 2
+    } else if (numTasks <= 32) {
+      maxNumExecutors = initialExecutorNum * 2
+    } else {
+      maxNumExecutors = initialExecutorNum * 2
+    }
   }
 
   def main(args: Array[String]) {

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package ml
+package org.apache.spark.examples.ml
 
 // scalastyle:off println
 import org.apache.spark.{SparkContext, SparkConf}

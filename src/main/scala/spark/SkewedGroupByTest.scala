@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package local
+package spark
 
 import java.util.Random
 
@@ -25,9 +25,9 @@ import org.apache.spark.{SparkConf, SparkContext}
 /**
   * Usage: GroupByTest [numMappers] [numKVPairs] [KeySize] [numReducers]
   */
-object GroupByTest {
+object SkewedGroupByTest {
   def main(args: Array[String]) {
-    val sparkConf = new SparkConf().setAppName("GroupBy Test").setMaster("local[2]")
+    val sparkConf = new SparkConf().setAppName("GroupBy Test")
     var numMappers = if (args.length > 0) args(0).toInt else 2
     var numKVPairs = if (args.length > 1) args(1).toInt else 1000
     var valSize = if (args.length > 2) args(2).toInt else 1000
@@ -37,6 +37,10 @@ object GroupByTest {
 
     val pairs1 = sc.parallelize(0 until numMappers, numMappers).flatMap { p =>
       val ranGen = new Random
+
+      // map output sizes lineraly increase from the 1st to the last
+      numKVPairs = (1.0 * (p + 1) / numMappers * numKVPairs).toInt
+
       var arr1 = new Array[(Int, Array[Byte])](numKVPairs)
       for (i <- 0 until numKVPairs) {
         val byteArr = new Array[Byte](valSize)

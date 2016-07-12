@@ -67,7 +67,7 @@
       <exclusions>
         <exclusion>
           <groupId>javax.servlet</groupId>
-          <artifactId>3.0.0</artifactId>
+          <artifactId>*</artifactId>
         </exclusion>
       </exclusions>
     </dependency>

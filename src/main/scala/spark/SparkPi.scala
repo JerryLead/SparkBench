@@ -15,20 +15,27 @@
  * limitations under the License.
  */
 
-package local
+// scalastyle:off println
+package spark
 
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark._
 
-object ExceptionHandlingTest {
+import scala.math.random
+
+/** Computes an approximation to pi */
+object SparkPi {
   def main(args: Array[String]) {
-    val sparkConf = new SparkConf().setAppName("ExceptionHandlingTest").setMaster("local[2]")
-    val sc = new SparkContext(sparkConf)
-    sc.parallelize(0 until sc.defaultParallelism).foreach { i =>
-      if (math.random > 0.75) {
-        throw new Exception("Testing exception handling")
-      }
-    }
-
-    sc.stop()
+    val conf = new SparkConf().setAppName("Spark Pi")
+    val spark = new SparkContext(conf)
+    val slices = if (args.length > 0) args(0).toInt else 2
+    val n = math.min(100000L * slices, Int.MaxValue).toInt // avoid overflow
+    val count = spark.parallelize(1 until n, slices).map { i =>
+      val x = random * 2 - 1
+      val y = random * 2 - 1
+      if (x*x + y*y < 1) 1 else 0
+    }.reduce(_ + _)
+    println("Pi is roughly " + 4.0 * count / (n - 1))
+    spark.stop()
   }
 }
+// scalastyle:on println

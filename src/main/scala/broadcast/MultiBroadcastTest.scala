@@ -16,39 +16,40 @@
  */
 
 // scalastyle:off println
-package local
+package broadcast
 
-import java.util.Random
-
+import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * Usage: GroupByTest [numMappers] [numKVPairs] [KeySize] [numReducers]
+  * Usage: MultiBroadcastTest [slices] [numElem]
   */
-object GroupByTest {
+object MultiBroadcastTest {
   def main(args: Array[String]) {
-    val sparkConf = new SparkConf().setAppName("GroupBy Test").setMaster("local[2]")
-    var numMappers = if (args.length > 0) args(0).toInt else 2
-    var numKVPairs = if (args.length > 1) args(1).toInt else 1000
-    var valSize = if (args.length > 2) args(2).toInt else 1000
-    var numReducers = if (args.length > 3) args(3).toInt else numMappers
 
+    val sparkConf = new SparkConf().setAppName("Multi-Broadcast Test")
     val sc = new SparkContext(sparkConf)
 
-    val pairs1 = sc.parallelize(0 until numMappers, numMappers).flatMap { p =>
-      val ranGen = new Random
-      var arr1 = new Array[(Int, Array[Byte])](numKVPairs)
-      for (i <- 0 until numKVPairs) {
-        val byteArr = new Array[Byte](valSize)
-        ranGen.nextBytes(byteArr)
-        arr1(i) = (ranGen.nextInt(Int.MaxValue), byteArr)
-      }
-      arr1
-    }.cache()
-    // Enforce that everything has been calculated and in cache
-    pairs1.count()
+    val slices = if (args.length > 0) args(0).toInt else 5
+    val num = if (args.length > 1) args(1).toInt else 1000000
 
-    println(pairs1.groupByKey(numReducers).count())
+    val arr1 = new Array[Int](num)
+    for (i <- 0 until arr1.length) {
+      arr1(i) = i
+    }
+
+    val arr2 = new Array[Int](num)
+    for (i <- 0 until arr2.length) {
+      arr2(i) = i
+    }
+
+    val barr1 = sc.broadcast(arr1)
+    val barr2 = sc.broadcast(arr2)
+    val observedSizes: RDD[(Int, Int)] = sc.parallelize(1 to 10, slices).map { _ =>
+      (barr1.value.size, barr2.value.size)
+    }
+    // Collect the small RDD so we can print the observed sizes locally.
+    observedSizes.collect().foreach(i => println(i))
 
     sc.stop()
   }

@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package org.apache.spark.examples.mllib
+package mllib
 
 import org.apache.spark.mllib.random.RandomRDDs
 import org.apache.spark.rdd.RDD

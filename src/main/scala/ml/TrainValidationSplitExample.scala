@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.spark.examples.ml
+package ml
 
 import org.apache.spark.ml.evaluation.RegressionEvaluator
 import org.apache.spark.ml.regression.LinearRegression

@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package org.apache.spark.examples.mllib
+package mllib
 
 import scopt.OptionParser
 
@@ -24,7 +24,8 @@ import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.mllib.evaluation.MulticlassMetrics
 import org.apache.spark.mllib.tree.GradientBoostedTrees
 import org.apache.spark.mllib.tree.configuration.{BoostingStrategy, Algo}
-import org.apache.spark.util.Utils
+
+import scala.util.Random
 
 
 /**
@@ -109,7 +110,7 @@ object GradientBoostedTreesRunner {
     boostingStrategy.numIterations = params.numIterations
     boostingStrategy.treeStrategy.maxDepth = params.maxDepth
 
-    val randomSeed = Utils.random.nextInt()
+    val randomSeed = new Random().nextInt()
     if (params.algo == "Classification") {
       val startTime = System.nanoTime()
       val model = GradientBoostedTrees.train(training, boostingStrategy)

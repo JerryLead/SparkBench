@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package org.apache.spark.examples.ml
+package ml
 
 import scala.collection.mutable
 import scala.language.reflectiveCalls
@@ -24,7 +24,7 @@ import scala.language.reflectiveCalls
 import scopt.OptionParser
 
 import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.examples.mllib.AbstractParams
+import mllib.AbstractParams
 import org.apache.spark.ml.{Pipeline, PipelineStage}
 import org.apache.spark.ml.classification.{GBTClassificationModel, GBTClassifier}
 import org.apache.spark.ml.feature.{StringIndexer, VectorIndexer}

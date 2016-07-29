@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package org.apache.spark.examples.mllib
+package mllib
 
 // $example on$
 import org.apache.spark.mllib.classification.{NaiveBayes, NaiveBayesModel}

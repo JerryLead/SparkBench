@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package org.apache.spark.examples.mllib
+package mllib
 
 import scala.language.reflectiveCalls
 
@@ -32,6 +32,8 @@ import org.apache.spark.mllib.tree.configuration.Algo._
 import org.apache.spark.mllib.util.MLUtils
 import org.apache.spark.rdd.RDD
 import org.apache.spark.util.Utils
+
+import scala.util.Random
 
 /**
  * An example runner for decision trees and random forests. Run with
@@ -311,7 +313,7 @@ object DecisionTreeRunner {
         println(s"Test mean squared error = $testMSE")
       }
     } else {
-      val randomSeed = Utils.random.nextInt()
+      val randomSeed = new Random().nextInt()
       if (params.algo == Classification) {
         val startTime = System.nanoTime()
         val model = RandomForest.trainClassifier(training, strategy, params.numTrees,

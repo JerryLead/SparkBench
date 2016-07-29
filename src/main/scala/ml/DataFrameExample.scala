@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package org.apache.spark.examples.ml
+package ml
 
 import java.io.File
 
@@ -24,7 +24,7 @@ import com.google.common.io.Files
 import scopt.OptionParser
 
 import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.examples.mllib.AbstractParams
+import mllib.AbstractParams
 import org.apache.spark.mllib.linalg.Vector
 import org.apache.spark.mllib.stat.MultivariateOnlineSummarizer
 import org.apache.spark.sql.{DataFrame, Row, SQLContext}

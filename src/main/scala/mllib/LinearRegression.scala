@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package org.apache.spark.examples.mllib
+package mllib
 
 import org.apache.log4j.{Level, Logger}
 import scopt.OptionParser

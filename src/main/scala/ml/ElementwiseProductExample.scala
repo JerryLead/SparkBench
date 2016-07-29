@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package org.apache.spark.examples.ml
+package ml
 
 // $example on$
 import org.apache.spark.ml.feature.ElementwiseProduct

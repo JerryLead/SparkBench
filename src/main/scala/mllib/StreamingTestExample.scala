@@ -17,13 +17,10 @@
 
 package mllib
 
-import java.io.{IOException, File}
-import java.util.UUID
-
 import org.apache.spark.SparkConf
 import org.apache.spark.mllib.stat.test.{BinarySample, StreamingTest}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
-import org.apache.spark.util.{ShutdownHookManager, Utils}
+import org.apache.spark.util.Utils
 
 /**
  * Perform streaming testing using Welch's 2-sample t-test on a stream of data, where the data
@@ -47,40 +44,6 @@ import org.apache.spark.util.{ShutdownHookManager, Utils}
  */
 object StreamingTestExample {
 
-
-  private val MAX_DIR_CREATION_ATTEMPTS: Int = 10
-
-  /**
-    * Create a directory inside the given parent directory. The directory is guaranteed to be
-    * newly created, and is not marked for automatic deletion.
-    */
-  def createDirectory(root: String, namePrefix: String = "spark"): File = {
-    var attempts = 0
-    val maxAttempts = MAX_DIR_CREATION_ATTEMPTS
-    var dir: File = null
-    while (dir == null) {
-      attempts += 1
-      if (attempts > maxAttempts) {
-        throw new IOException("Failed to create a temp directory (under " + root + ") after " +
-          maxAttempts + " attempts!")
-      }
-      try {
-        dir = new File(root, namePrefix + "-" + UUID.randomUUID.toString)
-        if (dir.exists() || !dir.mkdirs()) {
-          dir = null
-        }
-      } catch { case e: SecurityException => dir = null; }
-    }
-
-    dir.getCanonicalFile
-  }
-
-  def createTempDir(root: String = System.getProperty("java.io.tmpdir"),
-                     namePrefix: String = "spark"): File = {
-    val dir = createDirectory(root, namePrefix)
-    dir
-  }
-
   def main(args: Array[String]) {
     if (args.length != 3) {
       // scalastyle:off println
@@ -96,10 +59,12 @@ object StreamingTestExample {
 
     val conf = new SparkConf().setMaster("local").setAppName("StreamingTestExample")
     val ssc = new StreamingContext(conf, batchDuration)
-    ssc.checkpoint({
-      val dir = createTempDir()
+    /*
+    ssc.checkpoint {
+      val dir = Utils.createTempDir()
       dir.toString
-    })
+    }
+    */
 
     // $example on$
     val data = ssc.textFileStream(dataDir).map(line => line.split(",") match {

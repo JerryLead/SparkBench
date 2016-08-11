@@ -19,6 +19,7 @@
 package streaming
 
 import kafka.serializer.StringDecoder
+
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming._
 import org.apache.spark.streaming.kafka._

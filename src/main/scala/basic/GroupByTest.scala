@@ -29,13 +29,14 @@ object GroupByTest {
   def main(args: Array[String]) {
     val spark = SparkSession
       .builder
+      .master("local[2]")
       .appName("GroupBy Test")
       .getOrCreate()
 
-    val numMappers = if (args.length > 0) args(0).toInt else 2
-    val numKVPairs = if (args.length > 1) args(1).toInt else 1000
-    val valSize = if (args.length > 2) args(2).toInt else 1000
-    val numReducers = if (args.length > 3) args(3).toInt else numMappers
+    val numMappers = 8
+    val numKVPairs = 10000
+    val valSize = 100000
+    val numReducers = 4
 
     val pairs1 = spark.sparkContext.parallelize(0 until numMappers, numMappers).flatMap { p =>
       val ranGen = new Random
@@ -50,7 +51,9 @@ object GroupByTest {
     // Enforce that everything has been calculated and in cache
     pairs1.count()
 
-    println(pairs1.groupByKey(numReducers).count())
+    val groupByRDD = pairs1.groupByKey(numReducers)
+    println(groupByRDD.toDebugString)
+    println(groupByRDD.count())
 
     spark.stop()
   }

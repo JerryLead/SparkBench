@@ -12,3 +12,6 @@ Storage memory refers to that used for caching and propagating
 internal data across the cluster.
 
 There exists one MemoryManager per JVM.
+
+
+Before trying other techniques, the first thing to try if GC is a problem is to use serialized caching.

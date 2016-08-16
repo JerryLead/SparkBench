@@ -30,7 +30,7 @@ object SparkSessionUtil {
       .getOrCreate()
   }
 
-  def clusterSparkSession(master: String, appName: String) = {
+  def clusterDynamicSparkSession(master: String, appName: String) = {
     SparkSession
       .builder
       .master(master)
@@ -40,26 +40,18 @@ object SparkSessionUtil {
       .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
       .config("spark.driver.memory", "1g")
       .config("spark.yarn.historyServer.address", "master:18080")
-      .config("spark.executor.extraJavaOptions", "-XX:+PrintGCDetails")
-      .config("spark.yarn.jar", "hdfs://master:9000/spark_lib/spark-assembly-1.6.3-SNAPSHOT-hadoop2.7.1.jar")
+      // .config("spark.executor.extraJavaOptions", "-XX:+PrintGCDetails")
+      // .config("spark.yarn.jar", "hdfs://master:9000/spark_lib/spark-assembly-1.6.3-SNAPSHOT-hadoop2.7.1.jar")
+      .config("spark.dynamicAllocation.enabled", "true")
+      .config("spark.dynamicAllocation.executorIdleTimeout", "60s")
+      .config("spark.dynamicAllocation.initialExecutors", "1")
+      .config("spark.dynamicAllocation.minExecutors", "0")
+      .config("spark.dynamicAllocation.maxExecutors", "4")
+      .config("spark.dynamicAllocation.schedulerBacklogTimeout", "1s")
+      .config("spark.shuffle.service.enabled", "true")
+      // set executor size
+      .config("spark.executor.cores", "2")
+      .config("spark.executor.memory", "2g")
       .getOrCreate()
   }
-
-
-
-
-
-
-
-
-spark.dynamicAllocation.enabled             true
-spark.dynamicAllocation.executorIdleTimeout 60s
-spark.dynamicAllocation.initialExecutors    1
-spark.dynamicAllocation.minExecutors        0
-spark.dynamicAllocation.maxExecutors        4
-spark.dynamicAllocation.schedulerBacklogTimeout  1s
-spark.shuffle.service.enabled               true
-
-spark.executor.cores                        2
-spark.executor.memory                       2g
 }

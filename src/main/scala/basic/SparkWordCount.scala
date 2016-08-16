@@ -16,7 +16,7 @@ object SparkWordCount {
       .config("spark.memory.offHeap.size", "104857600")
       .getOrCreate()
 
-    val filePath = "src/main/scala/basic/SparkWordCount.scala"
+    val filePath = "/Users/xulijie/Documents/data/RandomText/randomText-10MB.txt"
     val textFile = spark.sparkContext.textFile(filePath)
     val result = textFile.flatMap(_.split("[ |\\.]"))
       .map(word => (word, 1)).reduceByKey(_ + _)
